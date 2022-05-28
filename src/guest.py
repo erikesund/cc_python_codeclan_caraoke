@@ -15,4 +15,6 @@ class Guest:
         for song in playlist:
             if song["title"] == fav_song:
                 return "Whoo!"
+            else:
+                return False
             

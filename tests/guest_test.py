@@ -40,11 +40,14 @@ class TestGuest(unittest.TestCase):
         self.assertEqual(995, self.guest_1.funds)
         self.assertEqual(195, self.guest_2.funds)
 
-    def test_check_for_favorite(self):
-        self.guest_5.check_for_favorite(self.room_1.playlist, self.guest_5.fav_song)
-        result = self.guest_5.check_for_favorite(self.room_1.playlist, self.guest_5.fav_song)
-        
-        self.assertEqual("Whoo!", result)
+    def test_check_for__favorite_is_true(self):
+        result_true = self.guest_5.check_for_favorite(self.room_1.playlist, self.guest_5.fav_song)
+        self.assertEqual("Whoo!", result_true)
+
+    def test_check_for__favorite_is_false(self):
+            result_false = self.guest_1.check_for_favorite(self.room_1.playlist, self.guest_1.fav_song)
+            self.assertEqual(False, result_false)
+    
 
 
     # def test_has_fav_song(self):

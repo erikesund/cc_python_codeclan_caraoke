@@ -29,3 +29,8 @@ class Room:
     def check_in(self, guest):
         self.add_guest(guest)
         self.charge_entry(guest, self.fee)
+
+    def search_playlist(self, searched_title):
+        for song in self.playlist:
+            return song.track_info["title"] == searched_title
+

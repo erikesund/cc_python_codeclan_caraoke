@@ -1,4 +1,5 @@
 import unittest
+from unittest import result
 from src.guest import Guest
 from src.song import Song
 from src.room import Room
@@ -12,6 +13,9 @@ class TestGuest(unittest.TestCase):
         self.guest_5 = Guest("Colin Greenwood", 52, "My Iron Lung", 16)
         self.room_1 = Room(1, 5, 3, 0)
         self.room_2 = Room(1, 5, 5, 0)
+        self.song_1 = Song({"artist": "Radiohead", "title": "My Iron Lung"})
+        self.song_2 = Song({"artist": "Iron Maiden", "title": "Back in Black"})
+        self.room_1.playlist = [{"artist": "Radiohead", "title": "My Iron Lung"}]
         
 
     def test_check_guest_has_name(self):
@@ -35,6 +39,20 @@ class TestGuest(unittest.TestCase):
         self.guest_2.pay_entry(self.room_2.fee)
         self.assertEqual(995, self.guest_1.funds)
         self.assertEqual(195, self.guest_2.funds)
+
+    def test_check_for_favorite(self):
+        self.guest_5.check_for_favorite(self.room_1.playlist, self.guest_5.fav_song)
+        result = self.guest_5.check_for_favorite(self.room_1.playlist, self.guest_5.fav_song)
+        
+        self.assertEqual("Whoo!", result)
+
+
+    # def test_has_fav_song(self):
+    #     # print(self.room_1.playlist)
+        
+    #     # result = self.guest_1.search_for_fav_song(self.room_1, self.guest_1.fav_song)
+
+    #     # self.assertEqual("Whoo!", result)
 
 
 

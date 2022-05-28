@@ -14,11 +14,13 @@ class TestRoom(unittest.TestCase):
         self.guest_4 = Guest("Phil Selway", 55, "Wind of Change", 15)
         self.guest_5 = Guest("Colin Greenwood", 52, "My Iron Lung", 16)
 
-        self.song_1 = Song({"Artist": "Radiohead", "Title": "My Iron Lung"})
-        self.song_2 = Song({"Artist": "Iron Maiden", "Title": "Back in Black"})
-        self.song_3 = Song({"Artist": "Frightened Rabbit", "Title": "State Hospital"})
-        self.song_4 = Song({"Artist": "Aqua", "Title": "Barbie Girl"})
-        self.song_5 = Song({"Artist": "The B52's", "Title": "Love Shack"})
+        self.song_1 = Song({"artist": "Radiohead", "title": "My Iron Lung"})
+        self.song_2 = Song({"artist": "Iron Maiden", "title": "Back in Black"})
+        self.song_3 = Song({"artist": "Frightened Rabbit", "title": "State Hospital"})
+        self.song_4 = Song({"artist": "Aqua", "title": "Barbie Girl"})
+        self.song_5 = Song({"artist": "The B52's", "title": "Love Shack"})
+
+        # self.room_1.playlist = [{self.song_1},{self.song_2}]
 
     def test_room_has_number(self):
         self.assertEqual(1, self.room_1.number)
@@ -73,3 +75,13 @@ class TestRoom(unittest.TestCase):
         self.room_1.remove_guest(self.guest_1.name)
 
         self.assertEqual([self.guest_2.name], self.room_1.guests)
+
+    def test_search_playlist__found_song_true(self):
+        self.room_1.add_song(self.song_1)
+        self.room_1.search_playlist(self.song_1.track_info["title"])
+        self.assertEqual(True, self.room_1.search_playlist(self.song_1.track_info["title"]))
+
+    def test_search_playlist__found_song_false(self):
+        self.room_1.add_song(self.song_2)
+        self.room_1.search_playlist(self.song_1.track_info["title"])
+        self.assertEqual(False, self.room_1.search_playlist(self.song_1.track_info["title"]))

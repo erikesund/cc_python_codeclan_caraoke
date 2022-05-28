@@ -17,5 +17,15 @@ class Room:
     def add_guest(self, guest):
         self.guests.append(guest.name)
 
-    def remove_guests(self):
+    def remove_guest(self, guest_name):
+        self.guests.remove(guest_name)
+
+    def remove_all_guests(self):
         self.guests.clear()
+
+    def check_capacity(self, group_size):
+        return group_size <= self.capacity
+
+    def check_in(self, guest):
+        self.add_guest(guest)
+        self.charge_entry(guest, self.fee)

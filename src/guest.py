@@ -11,11 +11,15 @@ class Guest:
     def search_for_fav_song(self, room, fav_song):
         room.search_playlist(fav_song)
         
-    def check_for_favorite(self, playlist, fav_song):
-        for song in playlist:
-            if song.title == fav_song:
-                return "Whoo!"
-            else:
-                return False
+    # def check_for_favorite(self, playlist, fav_song):
+    #     for song in playlist:
+    #         if song.title == fav_song:
+    #             return "Whoo!"
+    #         else:
+    #             return False
             
-    
+    def check_for_favorite(self, room, fav_song):
+        if room.search_playlist_by_title(fav_song) == True:
+            return "Whoo!"
+        else:
+            return False

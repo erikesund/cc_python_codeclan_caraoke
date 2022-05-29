@@ -2,6 +2,7 @@ import unittest
 from src.room import Room
 from src.guest import Guest
 from src.song import Song
+from src.bar import Bar 
 
 class TestRoom(unittest.TestCase):
     def setUp(self):
@@ -20,7 +21,7 @@ class TestRoom(unittest.TestCase):
         self.song_4 = Song("Aqua", "Barbie Girl")
         self.song_5 = Song("The B52's", "Love Shack")
 
-        # self.room_1.playlist = [{self.song_1},{self.song_2}]
+        # self.room_1.playlist = [self.song_1, self.song_2]
 
     def test_room_has_number(self):
         self.assertEqual(1, self.room_1.number)
@@ -78,10 +79,33 @@ class TestRoom(unittest.TestCase):
 
     def test_search_playlist__found_song_true(self):
         self.room_1.add_song(self.song_1)
-        self.room_1.search_playlist(self.song_1.title)
-        self.assertEqual(True, self.room_1.search_playlist(self.song_1.title))
+        result_true = self.room_1.search_playlist_by_title(self.song_1.title)
+        self.assertEqual(True, result_true)
 
     def test_search_playlist__found_song_false(self):
         self.room_1.add_song(self.song_2)
-        self.room_1.search_playlist(self.song_1.title)
-        self.assertEqual(False, self.room_1.search_playlist(self.song_1.title))
+        result_false = self.room_1.search_playlist_by_title(self.song_1.title)
+        self.assertEqual(False, result_false)
+
+    def test_can_send_money_to_bar(self):
+        self.room_1.till = 150
+        self.bar = Bar(100)
+
+        self.room_1.send_money_to_bar(self.room_1, self.bar)
+        self.assertEqual(250, self.bar.till)
+        self.assertEqual(0, self.room_1.till)
+
+
+    def test_close_room(self):
+        self.room_1 = Room(1, 5, 3, 100)
+        self.room_1.guests = ["Ed O'Brian", "Jonny Greenwood", "Phil Selway"]
+        self.room_1.till = 150
+        self.bar = Bar(100)
+
+        self.room_1.close_room(self.room_1, self.bar)
+
+        self.assertEqual(0, len(self.room_1.guests))
+        self.assertEqual(250, self.bar.till)
+        self.assertEqual(0, self.room_1.till)
+
+

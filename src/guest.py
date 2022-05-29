@@ -13,7 +13,7 @@ class Guest:
         
     def check_for_favorite(self, playlist, fav_song):
         for song in playlist:
-            if song["title"] == fav_song:
+            if song.title == fav_song:
                 return "Whoo!"
             else:
                 return False

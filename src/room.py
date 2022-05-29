@@ -32,5 +32,5 @@ class Room:
 
     def search_playlist(self, searched_title):
         for song in self.playlist:
-            return song.track_info["title"] == searched_title
+            return song.title == searched_title
 

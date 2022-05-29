@@ -1,5 +1,4 @@
 import unittest
-from unittest import result
 from src.guest import Guest
 from src.song import Song
 from src.room import Room
@@ -13,9 +12,9 @@ class TestGuest(unittest.TestCase):
         self.guest_5 = Guest("Colin Greenwood", 52, "My Iron Lung", 16)
         self.room_1 = Room(1, 5, 3, 0)
         self.room_2 = Room(1, 5, 5, 0)
-        self.song_1 = Song({"artist": "Radiohead", "title": "My Iron Lung"})
-        self.song_2 = Song({"artist": "Iron Maiden", "title": "Back in Black"})
-        self.room_1.playlist = [{"artist": "Radiohead", "title": "My Iron Lung"}]
+        self.song_1 = Song("Radiohead", "My Iron Lung")
+        self.song_2 = Song("Iron Maiden", "Back in Black")
+        self.room_1.playlist = [self.song_1, self.song_2]
         
 
     def test_check_guest_has_name(self):

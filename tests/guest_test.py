@@ -14,6 +14,7 @@ class TestGuest(unittest.TestCase):
         self.room_2 = Room(1, 5, 5, 0)
         self.song_1 = Song("Radiohead", "My Iron Lung")
         self.song_2 = Song("Iron Maiden", "Back in Black")
+        self.song_3 = Song("Radiohead", "Creep")
         self.room_1.playlist = [self.song_1, self.song_2]
         
 
@@ -44,17 +45,11 @@ class TestGuest(unittest.TestCase):
         self.assertEqual("Whoo!", result_true)
 
     def test_check_for__favorite_is_false(self):
-            result_false = self.guest_1.check_for_favorite(self.room_1.playlist, self.guest_1.fav_song)
-            self.assertEqual(False, result_false)
+        result_false = self.guest_1.check_for_favorite(self.room_1.playlist, self.guest_1.fav_song)
+        self.assertEqual(False, result_false)
     
 
-
-    # def test_has_fav_song(self):
-    #     # print(self.room_1.playlist)
-        
-    #     # result = self.guest_1.search_for_fav_song(self.room_1, self.guest_1.fav_song)
-
-    #     # self.assertEqual("Whoo!", result)
+    # def test_search_for_songs_by_artist(self):
 
 
 

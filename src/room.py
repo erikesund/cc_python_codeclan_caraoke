@@ -30,7 +30,7 @@ class Room:
         self.add_guest(guest)
         self.charge_entry(guest, self.fee)
 
-    def search_playlist(self, searched_title):
+    def search_playlist(self, search):
         for song in self.playlist:
-            return song.title == searched_title
-
+            return song.title == search
+    
